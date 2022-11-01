@@ -18,9 +18,8 @@ int main(){
 	passf = fopen("passwd", "w");
 	FILE *shadowf = fopen("shadow", "w");
 	//this uses the real passwd file to get current user.
-	unsigned int userId = getuid();
-	struct passwd *p = getpwuid(userId);
-	char* username = p->pw_name;
+	unsigned int userId;
+	char* username;
 	//char* homeDir = "/users/guest/s/sammyb98";
 	char* homeDir = "/";
        	//char* shell = "/bin/bash";
@@ -48,8 +47,11 @@ int main(){
 
 		}
 	}
+	//TODO: Make default if not reading users from file
 	else{
-
+		userId = getuid();
+        	struct passwd *p = getpwuid(userId);
+		username = p->pw_name;
 		for(int i = 0; i < 10; i++){
 			fprintf(passf, "%s:x:%d:SamuelBennion:%s:%s\n", username, userId, homeDir, shell);
 			//fprinf(shadowf, "%s:%s:%d:%d:%d:%d", username, );
