@@ -6,6 +6,7 @@
 #include <unistd.h>
 #define true 1
 #define false 0
+
 int main(){
 	int inFromFile = true;
 	char* usersPath = "users.txt";
